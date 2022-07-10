@@ -4,7 +4,7 @@ import xml.etree.ElementTree as et
 from scipy.fft import idct
 def getapi(url,param):
     qu=['http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList?serviceKey=PT8WA9S%2BrAN3hvm6e2CSDvOaiWJlRWpu%2BvQ7qNtKAylxcLJILSF%2FLQyGWfsCNvLmCGnzjCAmULm57lZ8ayGC9g%3D%3D&routeId=','http://apis.data.go.kr/6410000/busrouteservice/getBusRouteList?serviceKey=PT8WA9S%2BrAN3hvm6e2CSDvOaiWJlRWpu%2BvQ7qNtKAylxcLJILSF%2FLQyGWfsCNvLmCGnzjCAmULm57lZ8ayGC9g%3D%3D&keyword=',
-    'https://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList?serviceKey=PT8WA9S%2BrAN3hvm6e2CSDvOaiWJlRWpu%2BvQ7qNtKAylxcLJILSF%2FLQyGWfsCNvLmCGnzjCAmULm57lZ8ayGC9g%3D%3D&routeId=']
+    'http://apis.data.go.kr/6410000/busrouteservice/getBusRouteStationList?serviceKey=PT8WA9S%2BrAN3hvm6e2CSDvOaiWJlRWpu%2BvQ7qNtKAylxcLJILSF%2FLQyGWfsCNvLmCGnzjCAmULm57lZ8ayGC9g%3D%3D&routeId=']
     #qu[0]:url에 해당하는 routeid를 가진 버스의 위치를 알려줍니다
     #qu[1]:url에 해당하는 번호를 가진 버스들의 목록을 가지고 옵니다.
     #qu[2]:url에 해당하는 routeid를 가진 버스의 노선 목록을 가지고 옵니다.
