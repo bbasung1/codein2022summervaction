@@ -19,13 +19,4 @@ print(routeid)
 tmp=module.getapi(routeid,2)
 for i in tmp[2]:
     print(i.findtext("stationName"),i.findtext("stationSeq"))
-    # 0. centerYn:중앙차로 여부
-    # 1. districtCd: 구역 번호
-    # 2. moblieNo: 정류장 번호
-    # 3. regionName: 지역 이름
-    # 4. stationId: api에서 사용되는 정류장idct
-    # 5. stationName: 정류장 이름
-    # 6. x: 정류장의 x좌표
-    # 7. y: 정류장의 y좌표
-    # 8. stationSeq: 정류장 순번
-    # 9. turnYn: 회자지점 여부
+start,fin=input("원하시는 정류장 옆에 써저있는 번호를 출발 정류장, 도착 정류장 순서대로 입력하시요(띄어쓰기로 구분):").split()
