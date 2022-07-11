@@ -1,6 +1,7 @@
 import urllib.request
 import xml.etree.ElementTree as et
 import module
+import os
 # 만들어야 할것
 # 1. apiget을 이용하여 버스의 운행정보 불려오기
 # 2. 버스의 운행 정보 수집. 이때 출발 정류소와 도착 정류소의 버스 도착시간을 모두 수집해야 함
@@ -20,3 +21,5 @@ tmp=module.getapi(routeid,2)
 for i in tmp[2]:
     print(i.findtext("stationName"),i.findtext("stationSeq"))
 start,fin=input("원하시는 정류장 옆에 써저있는 번호를 출발 정류장, 도착 정류장 순서대로 입력하시요(띄어쓰기로 구분):").split()
+os.system(f"python3 infinite.py {start} {fin} {routeid}")
+print("서버에서 운행 정보 등을 확인 하고 있습니다")
