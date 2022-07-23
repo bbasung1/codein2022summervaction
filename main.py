@@ -6,44 +6,57 @@ import pandas as pd
 import time
 from datetime import datetime
 
-conn=sqlite3.connect('bustest1.db')
-cur=conn.cursor()
 busrouteid = module.getRouteid()
-buslocate = module.getapi(busrouteid,0)
+buslocates = module.getapi(busrouteid,0)
+stations = module.getapi(busrouteid,2)
 stationSeq = []
-stationIds = []
-platNno = []
 arrivalTime = []
+
 while(1):
-    for i in buslocate[2]:
-        print("버스 번호: "+i[2].text+"버스 노선중 현재 정류장의 순서: "+i[7].text)
-        stationSeq.append(i[7].text)
-        stationIds.append(i[6].text)
-        platNno.append(i[2].text)
-    for stationId in stationIds:
-        getbusLeftTime = module.getapi(stationId,3)
-        for j in busLeftTime[2]:
-            if j[11].text == busrouteid:
-                busLeftTime = (j[7].text)
-                if busLeftTime == 1:
-                    print("곧도착")
-                    arrivalTime.appned(datetime.now())                
+    conn=sqlite3.connect('bustest1.db')
+    cur=conn.cursor()
+
+    for buslocate in buslocates[2]:
+        stationId = buslocate[6].text   
+        busArrivalList = module.getapi(stationId,3)
+        for busArrival in busArrivalList[2]:
+            if busArrival[11].text == busrouteid:
+                if busArrival[0].text == "PASS" or "RUN":
+                    print(busArrival[13].text+"역에서 "+busArrival[5].text+"버스의 현재 남은시간은 "+busArrival[7].text+"분입니다.")
+                else:
+                    print("현재"+busArrival[5].text+"버스는 "+busArrival[13].text+"역 주변에서 운행중이 아닙니다.")
+
+
+
+
+
+    # raw_data = {'arrivalTime':arrivalTime,'stationSeq':stationSeq,'stationId':stationId,'platNno':platNno}
+
+    # df = pd.DataFrame(raw_data)
+    # df.to_sql('testbus',conn)
+    # conn.commit()
+    # conn.close()
+    q = input("if you want a stop enter the q")
+    if q == "q":
+        break
     print("60초 대기 시작. routeid=",busrouteid)
     time.sleep(60)
     print("60초 대기 완료")
 
-raw_data = {'stationSeq':stationSeq,'stationId':stationId,'platNno':platNno}
+# df = pd.DataFrame(raw_data)
+# df.to_sql('testbus',conn)
+# conn.commit()
+# conn.close()
+# raw_data = {'stationSeq':stationSeq,'stationId':stationId,'platNno':platNno}
 
-print(stationId)
+# print(stationId)
 # busarrival = module.getapi(stationId[0],3)
 # predictTime1 = busarrival[2][0][7].text
 # if predictTime1 == 1:
 #     print("곧도착")
-df = pd.DataFrame(raw_data)
-print(df)
+# df = pd.DataFrame(raw_data)
+# print(df)
 # df.to_sql('testbus',conn)
-conn.commit
-conn.close()
 
 
 # 만들어야 할것

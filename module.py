@@ -34,7 +34,7 @@ def bus_db():
     conn.close()
 
 def getStionId():
-    mylocation = input("가장 가까운 역이름을 적으세요")
+    mylocation = input("가장 가까운 역이름을 적으세요: ")
 
 
     #공통적으로 메인 정보는 [2][i][j]에 들어있음.
